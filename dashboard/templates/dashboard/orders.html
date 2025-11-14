@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Dashboard</h2>
+    <a href="{% url 'dashboard_home' %}"><i class="fa-solid fa-chart-line"></i> Overview</a>
+    <a href="{% url 'products_list' %}"><i class="fa-solid fa-box"></i> Products</a>
+    <a href="{% url 'orders_list' %}"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+    <a href="{% url 'users_list' %}"><i class="fa-solid fa-users"></i> Users</a>
+</div>
+
+<div class="main">
+    <h1>All Orders</h1>
+    <a href="{% url 'add_order' %}" class="top-right-btn">
+        Add Order
+    </a>
+</div>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Status</th>
+                <th>Total Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user.username }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.total_price }}</td>
+                <td>
+                    <a class="btn-edit" href="{% url 'edit_order' order.id %}">Update Status</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

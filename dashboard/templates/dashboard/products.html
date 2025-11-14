@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Dashboard</h2>
+    <a href="{% url 'dashboard_home' %}"><i class="fa-solid fa-chart-line"></i> Overview</a>
+    <a href="{% url 'products_list' %}"><i class="fa-solid fa-box"></i> Products</a>
+    <a href="{% url 'orders_list' %}"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+    <a href="{% url 'users_list' %}"><i class="fa-solid fa-users"></i> Users</a>
+</div>
+
+<div class="main">
+    <h1>All Products</h1>
+    <a href="{% url 'add_product' %}" class="btn-add-product">
+    Add Product
+</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Top Selling</th>
+                <th>Trending</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.top_selling|yesno:"Yes,No" }}</td>
+                <td>{{ product.trending|yesno:"Yes,No" }}</td>
+                <td>
+                    <a class="btn-edit" href="{% url 'edit_product' product.id %}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Order</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/edit_product.css' %}">
+</head>
+<body>
+<div class="main">
+    <h1>Add Order</h1>
+    <form method="POST" class="container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Order</button>
+    </form>
+</div>
+</body>
+</html>

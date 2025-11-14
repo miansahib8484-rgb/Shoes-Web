@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/user.css' %}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Dashboard</h2>
+    <a href="{% url 'dashboard_home' %}"><i class="fa-solid fa-chart-line"></i> Overview</a>
+    <a href="{% url 'products_list' %}"><i class="fa-solid fa-box"></i> Products</a>
+    <a href="{% url 'orders_list' %}"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+    <a href="{% url 'users_list' %}"><i class="fa-solid fa-users"></i> Users</a>
+</div>
+
+<div class="main">
+    <h1>All Users</h1>
+  <a href="{% url 'add_user' %}" class="top-right-btn">
+    Add User
+</a>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date Joined</th>
+            <th>Can Login</th>
+            <th>Access Admin</th>
+        </tr>
+
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.date_joined|date:"d M Y H:i" }}</td>
+            
+            <!-- Toggle Can Login -->
+            <td>
+                <a class="btn-toggle" href="{% url 'toggle_login' user.id %}">
+                    {% if user.userprofile.can_login %}
+                        <span class="check">&#10004;</span>
+                    {% else %}
+                        <span class="cross">&#10008;</span>
+                    {% endif %}
+                </a>
+            </td>
+
+            <!-- Toggle Access Admin -->
+            <td>
+                <a class="btn-toggle" href="{% url 'toggle_admin_access' user.id %}">
+                    {% if user.userprofile.can_access_admin %}
+                        <span class="check">&#10004;</span>
+                    {% else %}
+                        <span class="cross">&#10008;</span>
+                    {% endif %}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>

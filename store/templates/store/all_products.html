@@ -1,0 +1,50 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="products">
+  <h2>{{ heading }}</h2>
+
+  <div class="product-grid">
+  {% if products %}
+    {% for product in products %}
+      <div class="card">
+
+        <a href="{% url 'product_detail' product.pk %}">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% else %}
+            <img src="{% static 'store/images/default-product.jpg' %}" alt="No Image">
+          {% endif %}
+        </a>
+
+        <h3>
+          <a href="{% url 'product_detail' product.pk %}" style="text-decoration: none; color: #222;">
+            {{ product.name }}
+          </a>
+        </h3>
+
+        <p>Rs {{ product.price }}</p>
+
+        {% if product.size_list %}
+          <div class="product-sizes">
+            {% for s in product.size_list %}
+              <a href="{% url 'filter_by_size' size=s %}" class="size-badge">{{ s }}</a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="no-size">Size Not Available</p>
+        {% endif %}
+
+        <a href="{% url 'product_detail' product.pk %}" class="add-cart-btn" style="display:inline-block; text-align:center;">
+          Add to Cart
+        </a>
+
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No products found in this category.</p>
+  {% endif %}
+  </div>
+</section>
+{% endblock %}

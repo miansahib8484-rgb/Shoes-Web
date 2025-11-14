@@ -1,0 +1,58 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<section class="products">
+  <h2>Search Results for "{{ query }}"</h2>
+
+  <div class="product-grid">
+  {% if results %}
+    {% for product in results %}
+      <div class="card">
+
+        <!-- Product Image Clickable -->
+        <a href="{% url 'product_detail' product.pk %}">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% else %}
+            <img src="{% static 'store/images/default-product.jpg' %}" alt="No Image">
+          {% endif %}
+        </a>
+
+        <!-- Product Name -->
+        <h3>
+          <a href="{% url 'product_detail' product.pk %}" style="text-decoration:none; color:#222;">
+            {{ product.name }}
+          </a>
+        </h3>
+
+        <!-- Price -->
+        <p>Rs {{ product.price }}</p>
+
+        <!-- Sizes (if available) -->
+        {% if product.size_list %}
+          <div class="product-sizes">
+            {% for s in product.size_list %}
+              <a href="{% url 'filter_by_size' size=s %}" class="size-badge">{{ s }}</a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="no-size">Size Not Available</p>
+        {% endif %}
+
+        <!-- Add to Cart Button -->
+        <a href="{% url 'product_detail' product.pk %}" class="add-cart-btn" style="display:block;">
+          Add to Cart
+        </a>
+
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No results found for "<strong>{{ query }}</strong>". Try searching again!</p>
+  {% endif %}
+  </div>
+
+</section>
+{% endblock %}

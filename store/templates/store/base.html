@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}TAYYAB SHOES{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}?v=8">
+  <link rel="stylesheet" href="{% static 'store/css/about.css' %}?v=8">
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<header>
+  
+  <div class="top-bar">
+    <div class="left">
+      <p>Your Favorite Shoe Marketplace</p>
+    </div>
+    <div class="centre">
+      <p>7 Days Return and Exchange Policy</p>
+    </div>
+    <div class="right">
+      <p>📞 <a href="tel:+923407327059">+92 340 7327059</a></p>
+      <ul class="auth-links">
+        <li><a class="auth-btn" href="{% url 'login' %}">Login</a></li>
+           <a href="{% url 'track_order' %}" class="track-link">Track Order</a>
+      </ul>
+    </div>
+  </div>
+
+  
+  <div class="brand-line">
+    <h1 class="logo">TAYYAB SHOES</h1>
+    <form method="GET" action="{% url 'search' %}" class="search-box">
+      <input type="text" name="q" placeholder="Search for shoes...">
+      <button type="submit">🔍</button>
+    </form>
+  </div>
+
+  <nav class="top-nav-bar">
+    <ul class="menu">
+      <li><a href="{% url 'home' %}">NEW ARRIVAL</a></li>
+      <li><a href="{% url 'men' %}">MEN</a></li>
+      <li><a href="{% url 'women' %}">WOMEN</a></li>
+      <li><a href="{% url 'flashsale' %}">FLASH SALE</a></li>
+      <li><a href="{% url 'flipflops' %}">FLIP FLOP</a></li>
+      <li><a href="{% url 'about' %}">ABOUT US</a></li>
+      <li><a href="{% url 'contact' %}">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<section class="Need">
+  <h2>Need Help? WhatsApp or Call our support team at +92-340 7327059</h2>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-about">
+      <h2>TAYYAB SHOES</h2>
+      <p>Discover premium quality shoes that combine comfort, style, and durability. Step into elegance with every pair.</p>
+    </div>
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'women' %}">Women</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p><strong>Address:</strong> Lahore, Pakistan</p>
+      <p><strong>Phone:</strong> +92 300 1234567</p>
+      <p><strong>Email:</strong> support@tayyabshoes.com</p>
+    </div>
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 <span>TAYYAB SHOES</span>. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

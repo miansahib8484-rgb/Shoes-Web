@@ -1,0 +1,111 @@
+.contact-page {
+    padding: 60px 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.page-description {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.contact-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    flex: 1 1 400px;
+    max-width: 500px;
+}
+
+.contact-card h3 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.contact-card .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.contact-card input,
+.contact-card textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.contact-card .btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.contact-card .btn:hover {
+    background-color: #0056b3;
+}
+
+.success-msg {
+    color: green;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+.map-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    flex: 1 1 400px;
+    max-width: 500px;
+}
+
+.map-card h3 {
+    margin-bottom: 15px;
+    color: #222;
+}
+
+@media (max-width: 900px) {
+    .contact-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}

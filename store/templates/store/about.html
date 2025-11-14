@@ -1,0 +1,56 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+    <div class="hero-content">
+        <h1>About HafizTayyab ShoesWeb</h1>
+        <p>Stylish footwear, exceptional comfort, and an unforgettable shopping experience.</p>
+    </div>
+</section>
+
+<section class="about-info">
+    <div class="info-card">
+        <h2>Our Mission</h2>
+        <p>To provide high-quality, trendy shoes that combine style, comfort, and affordability for everyone.</p>
+    </div>
+    <div class="info-card">
+        <h2>Our Vision</h2>
+        <p>To become the leading online footwear brand that makes every step memorable.</p>
+    </div>
+</section>
+
+<section class="about-team">
+    <h2>Meet Our Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="{% static 'store/images/team1.jpg' %}" alt="Hafiz Tayyab">
+            <h3>Hafiz Tayyab</h3>
+            <p>Founder & CEO</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'store/images/team2.jpg' %}" alt="Ali Khan">
+            <h3>Ali Khan</h3>
+            <p>Marketing Head</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'store/images/team3.jpg' %}" alt="Sara Ahmed">
+            <h3>Sara Ahmed</h3>
+            <p>Design Lead</p>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="about-cta">
+    <h2>Join Our Journey</h2>
+    <p>Explore our wide range of footwear and step into comfort with style.</p>
+    <a href="{% url 'home' %}" class="cta-button">Shop Now</a>
+</section>
+
+{% endblock %}

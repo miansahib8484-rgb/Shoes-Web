@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Home</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Dashboard</h2>
+  <a href="{% url 'dashboard_home' %}"><i class="fa-solid fa-chart-line"></i> Overview</a>
+  <a href="{% url 'products_list' %}"><i class="fa-solid fa-box"></i> Products</a>
+  <a href="{% url 'orders_list' %}"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+  <a href="{% url 'users_list' %}"><i class="fa-solid fa-users"></i> Users</a>
+</div>
+
+<div class="main-header">
+    <h1>Welcome, {{ request.user.username }}</h1>
+    <form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="logout-btn">Logout</button>
+</form>
+
+</div>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Total Products</h3>
+            <h1>{{ product_count }}</h1>
+        </div>
+        <div class="card">
+            <h3>Total Users</h3>
+            <h1>{{ user_count }}</h1>
+        </div>
+        <div class="card">
+            <h3>Total Orders</h3>
+            <h1>{{ order_count }}</h1>
+        </div>
+    </div>
+
+    <div class="latest-activity">
+        <h2>Latest Products</h2>
+        <ul>
+            {% for product in latest_products %}
+                <li>{{ product.name }} - {{ product.created_at|date:"d M Y" }}</li>
+            {% empty %}
+                <li>No products yet.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Latest Orders</h2>
+        <ul>
+            {% for order in latest_orders %}
+                <li>{{ order.user.username }} - {{ order.product.name }} - {{ order.status }}</li>
+            {% empty %}
+                <li>No orders yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

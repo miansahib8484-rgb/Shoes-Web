@@ -1,0 +1,76 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- 🏷️ Main Banner -->
+<section class="banner">
+  <img src="{% static 'store/images/big-sale-social-media-post-template-premium-vector_556708-295.jpg' %}" alt="Flash Sale">
+</section>
+
+<!-- 🛒 Flash Sale Products -->
+<section class="products">
+  <h2>FLASH SALE</h2>
+
+  <div class="product-grid">
+  {% if products %}
+    {% for product in products|slice:":5" %}
+      <div class="card">
+
+        <a href="{% url 'product_detail' product.pk %}">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% else %}
+            <img src="{% static 'store/images/default-product.jpg' %}" alt="No Image">
+          {% endif %}
+        </a>
+
+        <h3>
+          <a href="{% url 'product_detail' product.pk %}" style="text-decoration: none; color: #222;">
+            {{ product.name }}
+          </a>
+        </h3>
+
+        <p>Rs. {{ product.price }}</p>
+
+        {% if product.size_list %}
+          <div class="product-sizes">
+            {% for s in product.size_list %}
+              <a href="{% url 'filter_by_size' size=s %}" class="size-badge">{{ s }}</a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="no-size">Size Not Available</p>
+        {% endif %}
+
+        <a href="{% url 'product_detail' product.pk %}" class="add-cart-btn" style="display:inline-block; text-align:center;">
+          Add to Cart
+        </a>
+
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No products available in FLASH SALE.</p>
+  {% endif %}
+  </div>
+
+  <a href="{% url 'all_products_category' category='FlashSale' %}" class="view-all">
+    View All Products
+  </a>
+</section>
+
+
+<section class="shop-by-size">
+  <h2>Shop by Size</h2>
+  <div class="size-boxes">
+    {% for size in sizes %}
+      {% if category %}
+        <a href="{% url 'filter_by_category_size' category size %}" class="size">{{ size }}</a>
+      {% else %}
+        <a href="{% url 'filter_by_size' size %}" class="size">{{ size }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

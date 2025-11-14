@@ -1,0 +1,78 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-container {
+    width: 380px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    animation: fadeIn 0.4s ease;
+}
+
+.auth-container h2 {
+    margin-bottom: 25px;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.auth-container form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    background: #fafafa;
+}
+
+.auth-container form input:focus {
+    border-color: #1c8c47; /* Green Focus */
+    outline: none;
+    background: #ffffff;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    background: #1c8c47; /* Main Green */
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.auth-btn:hover {
+    background: #146B34; /* Darker Green Hover */
+}
+
+.auth-container p {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #333;
+}
+
+.auth-container a {
+    color: #1c8c47;   /* Link Green */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}

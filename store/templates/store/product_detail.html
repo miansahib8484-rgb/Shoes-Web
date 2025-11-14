@@ -1,0 +1,76 @@
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'store/css/product_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="product-detail">
+
+    <!-- Display messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Product Name -->
+    <h2>{{ product.name }}</h2>
+
+    <!-- Product Image -->
+    <div class="image-wrapper">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+            <img src="{% static 'store/images/default-product.jpg' %}" alt="No Image">
+        {% endif %}
+    </div>
+
+    <!-- Product Description and Price -->
+    <p>{{ product.description }}</p>
+    <p class="price">Price: Rs. {{ product.price }}</p>
+
+    {% if user.is_authenticated %}
+        <!-- Add to Cart Form -->
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+
+            <label for="size">Select Size:</label>
+            <select name="size" id="size" required>
+                {% for s in sizes %}
+                    <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+
+        
+
+        <form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ request.user.email }}" required>
+
+    <label for="phone">Phone:</label>
+    <input type="text" name="phone" id="phone" required>
+
+    <label for="address">Address:</label>
+    <textarea name="address" id="address" rows="3" required></textarea>
+
+    <button type="submit" class="add-cart-btn">Place Order</button>
+</form>
+
+    {% else %}
+        <div class="login-redirect-box" style="margin-top:20px; text-align:center;">
+            <p style="font-size:17px; margin-bottom:10px;">You must be logged in to add items to cart or place order.</p>
+            <a href="{% url 'login' %}?next={{ request.path }}" class="add-cart-btn" style="background:#333; color:white; padding:10px 15px; border-radius:5px; text-decoration:none;">
+                Login to Continue
+            </a>
+        </div>
+    {% endif %}
+
+</section>
+{% endblock %}

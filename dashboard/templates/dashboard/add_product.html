@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/edit_product.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Add Product</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Product</button>
+    </form>
+</div>
+
+</body>
+</html>
+

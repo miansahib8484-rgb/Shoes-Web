@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Page</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'store/css/help.css' %}">
+</head>
+<body>
+  <div class="help-container">
+    <h1>Help Page</h1>
+    <p>Here you can find answers to common questions and contact support.</p>
+
+  
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+
+    {% if form.errors %}
+      <div class="errors">
+        <p>Please correct the errors below:</p>
+        {{ form.errors }}
+      </div>
+    {% endif %}
+
+    {% if messages %}
+      {% for message in messages %}
+        <p class="success">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/edit_product.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Edit Product: {{ product.name }}</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ product.name }}" required>
+
+        <label>Price:</label>
+        <input type="number" step="0.01" name="price" value="{{ product.price }}" required>
+
+        <label>Stock:</label>
+        <input type="number" name="stock" value="{{ product.stock }}" required>
+
+        <label>Description:</label>
+        <textarea name="description">{{ product.description }}</textarea>
+
+        <label>Sizes (comma separated):</label>
+        <input type="text" name="sizes" value="{{ product.sizes }}">
+
+        <label>Top Selling:</label>
+        <label class="toggle-checkbox">
+            <input type="checkbox" name="top_selling" {% if product.top_selling %}checked{% endif %}>
+            <span class="toggle-slider"></span>
+        </label>
+
+        <label>Trending:</label>
+        <label class="toggle-checkbox">
+            <input type="checkbox" name="trending" {% if product.trending %}checked{% endif %}>
+            <span class="toggle-slider"></span>
+        </label>
+
+        <label>Image:</label>
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+        <input type="file" name="image">
+
+        <button type="submit">Update Product</button>
+    </form>
+
+    <a href="{% url 'dashboard_home' %}" class="back-link">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

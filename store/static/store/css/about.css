@@ -1,0 +1,181 @@
+
+h1, h2, h3, p, a {
+    text-decoration: none;
+    margin: 0;
+}
+
+.about-hero a,
+.about-info a,
+.about-team a,
+.about-cta a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.about-hero a:hover,
+.about-info a:hover,
+.about-team a:hover,
+.about-cta a:hover {
+    text-decoration: underline;
+}
+
+
+.about-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('../images/about-banner.jpg') center/cover no-repeat;
+    color: #fff;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.about-hero p {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+
+.about-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+}
+
+.info-card {
+    flex: 1 1 300px;
+    max-width: 400px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.info-card h2 {
+    color: #ff6600;
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+
+.about-team {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-team h2 {
+    color: #ff6600;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.team-member {
+    max-width: 220px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.team-member img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.team-member h3 {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.team-member p {
+    color: #777;
+}
+
+.about-cta {
+    background-color: #333;
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.about-cta h2 {
+    color: #ff6600;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about-cta p {
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    line-height: 1.7;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #ff6600;
+    color: #fff;
+    padding: 15px 35px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+    background-color: #e65c00;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 1024px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-info .info-card h2 {
+        font-size: 1.7rem;
+    }
+
+    .about-team h2,
+    .about-cta h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .about-hero p {
+        font-size: 1.1rem;
+    }
+}

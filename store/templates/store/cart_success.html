@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Placed</title>
+  <link rel="stylesheet" href="{% static 'store/css/cart_success.css' %}">
+</head>
+<body>
+<h1>✅ Order Placed Successfully!</h1>
+<p>{{ message }}</p>
+
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Size</th>
+        <th>Status</th>
+    </tr>
+    {% for item in cart_items %}
+    <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.size }}</td>
+        <td>{{ item.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/" class="btn">Continue Shopping</a>
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Order - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/edit_product.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Edit Order: {{ user.name }}</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  <label>Status:</label>
+  <select name="status">
+    <option value="Pending" {% if order.status == "Pending" %}selected{% endif %}>Pending</option>
+    <option value="Processing" {% if order.status == "Processing" %}selected{% endif %}>Processing</option>
+    <option value="Shipped" {% if order.status == "Shipped" %}selected{% endif %}>Shipped</option>
+    <option value="Delivered" {% if order.status == "Delivered" %}selected{% endif %}>Delivered</option>
+  </select>
+
+  <button type="submit">Update Status</button>
+</form>
